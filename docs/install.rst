@@ -1,35 +1,34 @@
-Qiskit Installation and setup
-=============================
+Qiskit のインストールとセットアップ
+===================================
 
 
-Dependencies
-------------
+前提ソフトウエア
+----------------
 
-To use Qiskit  you'll need to have installed at least
-`Python 3.5 or later <https://www.python.org/downloads/>`__.
-`Jupyter Notebooks <https://jupyter.readthedocs.io/en/latest/install.html>`__
-is also recommended for interacting with
-`tutorials`_.
+Qiskit を使用するには
+`Python 3.5 以上 <https://www.python.org/downloads/>`__ が必要です。
+また対話的に `tutorials`_ を行う場合、
+`Jupyter Notebooks <https://jupyter.readthedocs.io/en/latest/install.html>`__ を使用すると効率的です。
 
-For this reason we recommend installing `Anaconda 3 <https://www.anaconda.com/download/>`__
-python distribution, which already comes with all these dependencies pre-installed.
+個別にインストールするか、`Anaconda 3 <https://www.anaconda.com/download/>`__ python ディストリビューションを
+インストールしてください。Anaconda 3 にはこれらすべての前提ソフトウエアが含まれています。
 
-Windows users also need to install VC++ runtime components. We recommend one of the following links.
+Windows ユーザーは追加で VC++ ランタイムコンポーネントのインストールも必要です。以下のリンクのどちらかを使用してインストールしてください。
 
 - `Microsoft Visual C++ Redistributable for Visual Studio 2017 <https://go.microsoft.com/fwlink/?LinkId=746572>`__
 - `Microsoft Visual C++ Redistributable for Visual Studio 2015 <https://www.microsoft.com/en-US/download/details.aspx?id=48145>`__
 
 
-Installation with environment
+環境と Qiskit のインストール
 -----------------------------
 
 .. note::
 
-    We recommend using `Python virtual environments <https://docs.python.org/3/tutorial/venv.html>`__
-    to cleanly separate Qiskit from other applications and improve your experience.
+    `Python 仮想環境 <https://docs.python.org/3/tutorial/venv.html>`__ の利用を推奨します。
+    他のアプリケーションから Qiskit 環境を分離し不要なトラブルを避けられます。
 
 
-The simplest way to use environments is by using Anaconda
+もっとも簡単に環境を使用するには Anaconda を使用してください。
 
 .. code:: sh
 
@@ -37,60 +36,50 @@ The simplest way to use environments is by using Anaconda
      activate Qiskitenv
 
 
-The recommended way to install Qiskit is by using the PIP (Python
-package manager) tool:
+Qiskit のインストールには PIP ツール (Python パッケージマネージャー) を使用してください。
 
 .. code:: sh
 
     pip install qiskit
 
-This will install the latest stable release, along with all the dependencies.
+最新の安定版リリースと、依存パッケージがインストールされます。
 
+ビジュアライゼーション用のパッケージを含めたインストール
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Install with visualization dependencies
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-There are optional dependencies that are required to use all the visualization
-functions included in Qiskit. You can install these at the same time by
-running:
+Qiskit に含まれるすべてのビジュアライゼーション機能を使用するには、追加のパッケージが必要です。
+次のコマンドを実行すると Qiskit と同時に、すべてのビジュアライゼーション機能に必要なパッケージをインストールします。
 
 .. code:: sh
 
    pip install qiskit[visualization]
 
-which will install qiskit and all the visualization dependencies.
 
 
-Setup a standalone version
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+スタンドアロン版のセットアップ
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The best way to install Qiskit when the goal is to extend its capabilities is by cloning
-the individual repositories 
+Qiskit の拡張を目的としてインストールする場合は個別にリポジトリをクローンし、各リポジトリのインストール手順に従ってください。
 
-- `Terra repository <https://github.com/Qiskit/qiskit-terra>`__.
-- `Aer repository <https://github.com/Qiskit/qiskit-aer>`__.
-- `Aqua repository <https://github.com/Qiskit/qiskit-aqua>`__.
-- `Chemistry repository <https://github.com/Qiskit/qiskit-chemistry>`__.
-
-and following the standalone install instructions in these repositories.
+- `Terra リポジトリ <https://github.com/Qiskit/qiskit-terra>`__
+- `Aer リポジトリ <https://github.com/Qiskit/qiskit-aer>`__
+- `Aqua リポジトリ <https://github.com/Qiskit/qiskit-aqua>`__
+- `Chemistry リポジトリ <https://github.com/Qiskit/qiskit-chemistry>`__
 
 
-Configure your API token and IBMQ credentials
+API トークンと IBMQ 認証情報の構成
 ---------------------------------------------
 
--  Create an `IBM Q <https://quantumexperience.ng.bluemix.net>`__ account if
-   you haven't already done so
--  Get an API token from the IBM Q website under “My
-   Account” > “Advanced”
+-  まだ持っていなければ `IBM Q <https://quantumexperience.ng.bluemix.net>`__ アカウントを作成してください。
+-  IBM Q Web サイトにログインし、“My Account” > “Advanced” から API トークンを取得してください。
 
 
-Automatically loading credentials
+認証情報の自動ロード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The credentials for accessing the IBM Q quantum devices can be loaded
-automatically, thus streamlining the set up of the IBM Q 
-authentication.  You can set or store your API credentials once after installation, 
-and when you want to use them, you can simply run:
+IBM Q 量子装置のアクセス認証情報は自動的にロードされるため、IBM Q 認証の設定は非常に簡単です。
+インストール後に一度だけ API 認証情報を設定するか保存すれば、
+あとは使用する際に次のコードを実行するだけで済みます。
 
 .. code:: python
 
@@ -98,21 +87,19 @@ and when you want to use them, you can simply run:
 
     IBMQ.load_accounts()
 
-This ``IBMQ.load_accounts()`` call performs the automatic loading of the
-credentials from several sources (if needed), and authenticates against IBM Q, 
-making the online devices available to your program. Please use one of the following
-methods for storing the credentials before calling the automatic registration:
+この ``IBMQ.load_accounts()`` 呼び出しは、(必要であれば) 複数の場所から自動的に認証情報のロードを実行し、
+IBM Q に対して認証し、プログラム用にオンライン装置を利用可能にします。
+次のどちらかの方法を使用して、認証情報を保存してください。
 
 
-Store API credentials locally
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+API 認証情報のローカルへの保存
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For most users, storing your API credentials is the most convenient approach.
-Your information is stored locally in a configuration file called `qiskitrc`,
-and once stored, you can use the credentials without explicitly passing them
-to your program.
+大部分のユーザーにとって一番簡単な方法は API 認証情報の保存でしょう。
+情報はローカルの構成ファイル「`qiskitrc`」に保存され、一度保存すると、あとは
+プログラム内で明示的に渡さずに認証情報を使用できます。
 
-To store your information, simply run:
+情報を保存するには、次のコマンドを実行してください。
 
 .. code:: python
 
@@ -121,11 +108,11 @@ To store your information, simply run:
     IBMQ.save_account('MY_API_TOKEN')
 
 
-where `MY_API_TOKEN` should be replaced with your token.
+このとき `MY_API_TOKEN` はトークンで置き換えてください。
 
-If you are on the IBM Q network, you must also pass the `url` 
-argument found on your q-console account page to `IBMQ.save_account()`,
-along with any other additional information required (e.g. proxy information):
+「IBM Q ネットワーク」上にいる場合には、`IBMQ.save_account()` に 
+q-console アカウントページに表示される `url` 引数を渡す必要があります。
+さらに追加の情報 (例: プロキシー情報) が必要な場合もあります。
 
 .. code:: python
 
@@ -135,13 +122,12 @@ along with any other additional information required (e.g. proxy information):
 
 
 
-Manually loading credentials
+認証情報の手動ロード
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-In more complex scenarios or for users that need finer control over multiple
-accounts, one can pass the API token, and the other parameters, directly to the 
-``IBMQ.enable_account()`` function, that will ignore the automatic
-loading of the credentials and use the arguments directly. For example:
+より複雑なシナリオの場合や複数アカウントに対するきめ細かい制御が必要な場合は、
+API トークン、および他のパラメータを直接 ``IBMQ.enable_account()`` 関数に渡すことができます。
+このとき、認証情報は自動でロードされず、引数の値が直接、使用されます。
 
 .. code:: python
 
@@ -149,11 +135,12 @@ loading of the credentials and use the arguments directly. For example:
 
     IBMQ.enable_account('MY_API_TOKEN', url='https://my.url')
 
-will authenticate using ``MY_API_TOKEN`` and the specified URL,
-regardless of the configuration stored in the config file, the environment
-variables, or the ``Qconfig.py`` file, if any.
 
-Manually loading from a ``Qconfig.py`` file can also be done:
+
+この例では ``MY_API_TOKEN`` と指定した URL を使用して認証されます。構成ファイルに保存された構成や、
+環境変数、``Qconfig.py`` は無視されます。
+
+``Qconfig.py`` から手動でロードするには、次のコマンドを実行してください。
 
 .. code:: python
 
@@ -163,20 +150,17 @@ Manually loading from a ``Qconfig.py`` file can also be done:
     IBMQ.enable_account(Qconfig.APIToken, **Qconfig.config)
 
 
-Please refer to the ``qiskit.IBMQ`` documentation for more information about
-using multiple credentials.
+複数の認証情報を使用する方法の詳細については ``qiskit.IBMQ`` ドキュメントを参照してください。
 
 
-Troubleshooting
----------------
+トラブルシューティング
+-------------------------
 
-The installation steps described on this document assume familiarity with the
-Python environment on your setup (for example, standard Python, ``virtualenv``
-or Anaconda). Please consult the relevant documentation for instructions
-tailored to your environment.
+このドキュメントで紹介したインストール手順は、セットアップにおける Python 環境の知識
+を前提としています(例: 標準の Python、``virtualenv``、Anaconda)。
+それぞれのドキュメントで環境に応じた手順を参照してください。
 
-Depending on the system and setup, appending "sudo -H" before the
-``pip install`` command could be needed:
+システムや設定によっては、``pip install`` コマンドの前に「sudo -H」を付ける必要があります。
 
 .. code:: sh
 
